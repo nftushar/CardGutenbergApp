@@ -1,0 +1,194 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-create-block-card {
+	.cards {
+		display: grid;
+		column-gap: 20px;
+		row-gap: 20px;
+		grid-template-columns: auto auto auto;
+		// padding: 10px;
+
+		.card {
+			background-color: rgba(255, 255, 255, 0.8);
+			border: 1px solid rgba(0, 0, 0, 0.8);
+			padding: 20px;
+			font-size: 30px;
+			text-align: center;
+
+			border-radius: 8px;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+			// max-width: 50%;
+			// margin: auto;
+			font-family: arial;
+			// padding: -50%;
+			&.card-glass {
+				border: none;
+				-webkit-backdrop-filter: blur(40px);
+				backdrop-filter: blur(40px);
+				background-color: transparent;
+				background-image: linear-gradient(135deg, rgb(255 255 255 / 30%) 0%, rgb(0 0 0/0%) 100%),
+					linear-gradient(100deg, rgb(255 255 255 / 10%) 25%, rgb(0 0 0/0%) 25%);
+				box-shadow: 0 0 0 1px rgb(255 255 255 / 10%) inset, 0 0 0 2px #0000000d;
+				text-shadow: 0 1px rgb(0 0 0 / 5%);
+			}
+			&.card-padding {
+				border-radius: 8px;
+				box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+				max-width: 50%;
+				margin: auto;
+				padding: 4%;
+				font-family: arial;
+			}
+			// &.color-card {
+			// 	// background-color: #570dfb;
+			// }
+			&.color-card-two {
+				background-color: #3d4471;
+			}
+			&.spider {
+				display: flex;
+				border-radius: 11px;
+			}
+			&.card-music {
+				border-radius: 8px;
+				box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+				max-width: 80%;
+				margin: auto;
+				font-family: arial;
+				display: flex;
+			}
+
+			img.img {
+				overflow: hidden;
+				border-top-right-radius: 8px;
+				border-top-left-radius: 8px;
+			}
+
+			img.img2 {
+				overflow: hidden;
+				border-bottom-right-radius: 8px;
+				border-bottom-left-radius: 8px;
+				margin-bottom: -12px;
+			}
+			img.img-spider {
+				border-top-left-radius: 8px;
+				border-bottom-left-radius: 8px;
+			}
+
+			.card-body {
+				padding: var(--padding-card, 1rem);
+			}
+
+			.card-body2 {
+				padding: 1rem;
+				justify-content: center;
+			}
+			.spider-card-actions {
+				display: flex;
+				justify-content: flex-end;
+				margin-top: 38%;
+			}
+			.buttom-card-actions {
+				display: flex;
+				justify-content: flex-end;
+				margin-top: 42%;
+			}
+			h1 {
+				// background-color: #000;
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				font-size: 1.25rem;
+				line-height: 1.75rem;
+				font-weight: 600;
+			}
+			h1:before {
+				display: none;
+			}
+			p {
+				color: #000;
+			}
+			h2.card-title {
+				color: #000;
+				padding-bottom: 8%;
+				font-size: 20px;
+				font-weight: 200;
+			}
+			h2:before {
+				display: none;
+			}
+			.h1-white {
+				color: #ffff;
+			}
+
+			.p-white {
+				color: white;
+			}
+			p.spider-desc {
+				font-size: 13px;
+			}
+			.btn-wraper {
+				display: flex;
+				justify-content: flex-end;
+			}
+			.pop-up {
+				display: flex;
+				justify-content: flex-end;
+			}
+			svg.mysvg {
+				border-radius: 8px;
+				width: 34px;
+				background-color: black;
+				font-weight: 10px;
+				color: #ffff;
+				margin-bottom: 5%;
+			}
+			a {
+				text-decoration: none;
+				border-radius: 8px;
+				margin: 4%;
+				border: none;
+				outline: 0;
+				padding: 1%;
+				color: white;
+				background-color: #570dfb;
+				text-align: center;
+				cursor: pointer;
+				width: 37%;
+				font-size: 18px;
+				&.btn-black {
+					background-color: #000;
+				}
+
+				// &.btn-trans {
+				//     border-width: 1px;
+				//     border-color: transparent;
+				//     background-color: transparent;
+				// }
+				&.btn-ghost {
+					color: white;
+					border-width: 1px;
+					border-color: transparent;
+					background-color: transparent;
+				}
+			}
+
+			button:hover {
+				opacity: 0.7;
+			}
+
+			.btn1 {
+				background-color: transparent;
+				border: 1px solid black;
+				padding: 1%;
+				border-radius: 8px;
+				margin-left: 2%;
+			}
+		}
+	}
+}

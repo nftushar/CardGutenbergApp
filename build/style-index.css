@@ -1,0 +1,173 @@
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/style.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************/
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.wp-block-create-block-card .cards {
+  display: grid;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+  row-gap: 20px;
+  grid-template-columns: auto auto auto;
+}
+.wp-block-create-block-card .cards .card {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  font-family: arial;
+}
+.wp-block-create-block-card .cards .card.card-glass {
+  border: none;
+  -webkit-backdrop-filter: blur(40px);
+  backdrop-filter: blur(40px);
+  background-color: transparent;
+  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(0, 0, 0, 0) 100%), linear-gradient(100deg, rgba(255, 255, 255, 0.1) 25%, rgba(0, 0, 0, 0) 25%);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1) inset, 0 0 0 2px rgba(0, 0, 0, 0.0509803922);
+  text-shadow: 0 1px rgba(0, 0, 0, 0.05);
+}
+.wp-block-create-block-card .cards .card.card-padding {
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 50%;
+  margin: auto;
+  padding: 4%;
+  font-family: arial;
+}
+.wp-block-create-block-card .cards .card.color-card-two {
+  background-color: #3d4471;
+}
+.wp-block-create-block-card .cards .card.spider {
+  display: flex;
+  border-radius: 11px;
+}
+.wp-block-create-block-card .cards .card.card-music {
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 80%;
+  margin: auto;
+  font-family: arial;
+  display: flex;
+}
+.wp-block-create-block-card .cards .card img.img {
+  overflow: hidden;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+}
+.wp-block-create-block-card .cards .card img.img2 {
+  overflow: hidden;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  margin-bottom: -12px;
+}
+.wp-block-create-block-card .cards .card img.img-spider {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+.wp-block-create-block-card .cards .card .card-body {
+  padding: var(--padding-card, 1rem);
+}
+.wp-block-create-block-card .cards .card .card-body2 {
+  padding: 1rem;
+  justify-content: center;
+}
+.wp-block-create-block-card .cards .card .spider-card-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 38%;
+}
+.wp-block-create-block-card .cards .card .buttom-card-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 42%;
+}
+.wp-block-create-block-card .cards .card h1 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+}
+.wp-block-create-block-card .cards .card h1:before {
+  display: none;
+}
+.wp-block-create-block-card .cards .card p {
+  color: #000;
+}
+.wp-block-create-block-card .cards .card h2.card-title {
+  color: #000;
+  padding-bottom: 8%;
+  font-size: 20px;
+  font-weight: 200;
+}
+.wp-block-create-block-card .cards .card h2:before {
+  display: none;
+}
+.wp-block-create-block-card .cards .card .h1-white {
+  color: white;
+}
+.wp-block-create-block-card .cards .card .p-white {
+  color: white;
+}
+.wp-block-create-block-card .cards .card p.spider-desc {
+  font-size: 13px;
+}
+.wp-block-create-block-card .cards .card .btn-wraper {
+  display: flex;
+  justify-content: flex-end;
+}
+.wp-block-create-block-card .cards .card .pop-up {
+  display: flex;
+  justify-content: flex-end;
+}
+.wp-block-create-block-card .cards .card svg.mysvg {
+  border-radius: 8px;
+  width: 34px;
+  background-color: black;
+  font-weight: 10px;
+  color: white;
+  margin-bottom: 5%;
+}
+.wp-block-create-block-card .cards .card a {
+  text-decoration: none;
+  border-radius: 8px;
+  margin: 4%;
+  border: none;
+  outline: 0;
+  padding: 1%;
+  color: white;
+  background-color: #570dfb;
+  text-align: center;
+  cursor: pointer;
+  width: 37%;
+  font-size: 18px;
+}
+.wp-block-create-block-card .cards .card a.btn-black {
+  background-color: #000;
+}
+.wp-block-create-block-card .cards .card a.btn-ghost {
+  color: white;
+  border-width: 1px;
+  border-color: transparent;
+  background-color: transparent;
+}
+.wp-block-create-block-card .cards .card button:hover {
+  opacity: 0.7;
+}
+.wp-block-create-block-card .cards .card .btn1 {
+  background-color: transparent;
+  border: 1px solid black;
+  padding: 1%;
+  border-radius: 8px;
+  margin-left: 2%;
+}
+
+/*# sourceMappingURL=style-index.css.map*/
