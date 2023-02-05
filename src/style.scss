@@ -8,20 +8,19 @@
 .wp-block-create-block-card {
 	.cards {
 		display: grid;
-		column-gap: 20px;
-		row-gap: 20px;
+		// column-gap: 20px;
+		// row-gap: 20px;
 		grid-template-columns: auto auto auto;
 		// padding: 10px;
 
 		.card {
 			background-color: rgba(255, 255, 255, 0.8);
-			border: 1px solid rgba(0, 0, 0, 0.8);
 			padding: 20px;
 			font-size: 30px;
 			text-align: center;
 
 			border-radius: 8px;
-			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+			box-shadow: 0 4px 8px 0 rgba(126, 43, 43, 0.2);
 			// max-width: 50%;
 			// margin: auto;
 			font-family: arial;
@@ -110,9 +109,9 @@
 			h1:before {
 				display: none;
 			}
-			p {
-				color: #000;
-			}
+			// .desc {
+			// 	color: #eb2121;
+			// }
 			h2.card-title {
 				color: #000;
 				padding-bottom: 8%;

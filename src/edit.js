@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { blockProps, useBlockProps, InspectorControls, RichText } from '@wordpress/block-editor';
 import {
 	__experimentalUnitControl as UnitControl, __experimentalNumberControl as NumberControl,
-	TabPanel, colors, PanelBody, descColor, PanelRow, SelectControl, __experimentalBoxControl as BoxControl, ColorPalette, __experimentalText as Text, TextInput, TextControl,
+	TabPanel, colors, PanelBody, columnGap, descColor, PanelRow, SelectControl, __experimentalBoxControl as BoxControl, ColorPalette, __experimentalText as Text, TextInput, TextControl,
 	btnLabel, btnUrl, setBtnUrl
 } from '@wordpress/components';
 
@@ -69,7 +69,6 @@ export default function Edit(props) {
 			}
 		}];
 		setAttributes({ cards: newCards });
-
 	}
 
 
@@ -77,7 +76,9 @@ export default function Edit(props) {
 		const newCards = [...cards];
 		newCards[index].descColor = newDescColor;
 		setAttributes({ cards: newCards });
+		// console.log(setAttributes)
 	};
+	
 
 	function setColumngap(newColumngap) {
 		setAttributes({ columnGap: newColumngap });
@@ -107,8 +108,6 @@ export default function Edit(props) {
 		right: '10%',
 		bottom: '50px',
 	});
-
-
 
 	return (
 		<div {...useBlockProps()}>
@@ -140,10 +139,8 @@ export default function Edit(props) {
 							{cards.map((card, index) => {
 								return (
 									<>
-										<PanelBody title={`Card :${index + 1};`}     initialOpen={index ? false : true}  >
-											{/* condition ? exprIfTrue : exprIfFalse */}
+										<PanelBody title={`Card :${index + 1};`} initialOpen={index ? false : true}  >
 											<PanelRow>
-												{/* initialOpen={false} */}
 												<TextControl
 													label="Add button Label"
 													value={card.btnLabel}
@@ -152,7 +149,7 @@ export default function Edit(props) {
 											</PanelRow>
 											<PanelRow>
 												<TextControl
-													label="Add button Url"
+													label="Add button Url" titlecolo
 													value={card.btnUrl}
 													onChange={(btnUrl) => setBtnUrl(btnUrl, index)}
 												/>
@@ -165,7 +162,6 @@ export default function Edit(props) {
 													value={card.titleColor}
 													onChange={(color) => setTitleColor(color, index)}
 												/>
-												{/* btnLabel */}
 											</PanelRow>
 											<PanelRow>
 
@@ -177,10 +173,10 @@ export default function Edit(props) {
 													value={card.descColor}
 													onChange={(color) => setDescColor(color, index)}
 												/>
+												
 											</PanelRow>
 										</PanelBody>
 									</>
-									// console.log( card.titleColor );
 								)
 							})}
 
@@ -204,6 +200,7 @@ export default function Edit(props) {
 									<UnitControl
 										onChange={setColumngap}
 										value={attributes.columnGap}
+										
 									/>
 								</PanelRow>
 
@@ -228,7 +225,7 @@ export default function Edit(props) {
 									/>
 								</PanelRow>
 
-								<PanelRow >
+								<PanelRow>
 									<BoxControl
 										// Padding
 										label="Set Paddign"
@@ -246,8 +243,18 @@ export default function Edit(props) {
 					</div>}
 				</TabPanel>
 			</InspectorControls>
+			<style>
+				{`
+                    .cards {
+                          column-gap:${attributes.columnGap};
+                          row-gap:${attributes.rowGap};
+						 }
+				`}
 
-			<div className="cards ">
+			</style>
+
+
+			<div className="cards">
 
 				{/* card one */}
 				{cards.map((card, index) => (
@@ -256,7 +263,13 @@ export default function Edit(props) {
 						<style>
 							{`.cards .card-${index} h1 {
 								color:${card.titleColor}; 
-				           	}`}
+				           	} 
+
+							.cards .card-${index} .desc{
+                                 color:${card.descColor}
+							}
+							`}
+
 
 						</style>
 						<img className="img" src={shoes} alt="Denim Jeans" />
@@ -265,6 +278,7 @@ export default function Edit(props) {
 							<RichText
 								{...blockProps}
 								tagName="h1"
+								
 								value={card.title}
 								allowedFormats={['core/bold', 'core/italic']}
 								onChange={(content) => setAttributes({ content, index })}
@@ -272,11 +286,12 @@ export default function Edit(props) {
 							/>
 							<RichText
 								{...blockProps}
-								tagName="p" 
-								value={card.desc} 
-								allowedFormats={['core/bold', 'core/italic']} 
-								onChange={(content) => setAttributes({ content })} 
-								placeholder={__('Title here..')}
+								tagName="p"
+								className='desc'
+								value={card.desc}
+								allowedFormats={['core/bold', 'core/italic']}
+								onChange={(content) => setAttributes({ content, index })}
+								placeholder={__('Description here..')}
 							/>
 							<div className="btn-wraper" ><a href={card.btnUrl} >{card.btnLabel}</a></div>
 
@@ -393,7 +408,7 @@ export default function Edit(props) {
 
 			</div>
 
-		</div>
+		</div >
 	);
 }
 

@@ -9,19 +9,15 @@
  */
 .wp-block-create-block-card .cards {
   display: grid;
-  -moz-column-gap: 20px;
-       column-gap: 20px;
-  row-gap: 20px;
   grid-template-columns: auto auto auto;
 }
 .wp-block-create-block-card .cards .card {
   background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.8);
   padding: 20px;
   font-size: 30px;
   text-align: center;
   border-radius: 8px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px 0 rgba(126, 43, 43, 0.2);
   font-family: arial;
 }
 .wp-block-create-block-card .cards .card.card-glass {
@@ -98,9 +94,6 @@
 }
 .wp-block-create-block-card .cards .card h1:before {
   display: none;
-}
-.wp-block-create-block-card .cards .card p {
-  color: #000;
 }
 .wp-block-create-block-card .cards .card h2.card-title {
   color: #000;

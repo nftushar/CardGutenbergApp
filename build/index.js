@@ -112,7 +112,9 @@ function Edit(props) {
     setAttributes({
       cards: newCards
     });
+    // console.log(setAttributes)
   };
+
   function setColumngap(newColumngap) {
     setAttributes({
       columnGap: newColumngap
@@ -181,6 +183,7 @@ function Edit(props) {
       onChange: btnLabel => setBtnLabel(btnLabel, index)
     })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelRow, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
       label: "Add button Url",
+      titlecolo: true,
       value: card.btnUrl,
       onChange: btnUrl => setBtnUrl(btnUrl, index)
     })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelRow, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("label", null, "Title Color"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ColorPalette, {
@@ -191,9 +194,7 @@ function Edit(props) {
       colors: [],
       value: card.descColor,
       onChange: color => setDescColor(color, index)
-    }))))
-    // console.log( card.titleColor );
-    ;
+    }))));
   })), tab.name === "options" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
     title: "My Block Settings"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelRow, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.SelectControl, {
@@ -234,13 +235,23 @@ function Edit(props) {
     label: "Set Paddign",
     values: attributes.padding,
     onChange: setPadding
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelRow, null)))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-    className: "cards "
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelRow, null)))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("style", null, `
+                    .cards {
+                          column-gap:${attributes.columnGap};
+                          row-gap:${attributes.rowGap};
+						 }
+				`), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+    className: "cards"
   }, cards.map((card, index) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: `card card-${index}`
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("style", null, `.cards .card-${index} h1 {
 								color:${card.titleColor}; 
-				           	}`), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("img", {
+				           	} 
+
+							.cards .card-${index} .desc{
+                                 color:${card.descColor}
+							}
+							`), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("img", {
     className: "img",
     src: _img_shoes_jpg__WEBPACK_IMPORTED_MODULE_7__,
     alt: "Denim Jeans"
@@ -257,12 +268,14 @@ function Edit(props) {
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Title here..', 'info-cards')
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.RichText, (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.blockProps, {
     tagName: "p",
+    className: "desc",
     value: card.desc,
     allowedFormats: ['core/bold', 'core/italic'],
     onChange: content => setAttributes({
-      content
+      content,
+      index
     }),
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Title here..')
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Description here..')
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: "btn-wraper"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", {
