@@ -95,7 +95,7 @@ function Edit(props) {
       "title": "This is my title",
       "titleColor": "#000",
       "desc": "This is my description",
-      "descColor": "#ffff",
+      "descColor": "#000",
       "btnLabel": "Button",
       "btnUrl": "https://www.google.com/",
       "btnColors": {
@@ -194,7 +194,7 @@ function Edit(props) {
       colors: [],
       value: card.descColor,
       onChange: color => setDescColor(color, index)
-    }))));
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("button", null, "Delete")));
   })), tab.name === "options" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
     title: "My Block Settings"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelRow, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.SelectControl, {
@@ -516,7 +516,7 @@ function _extends() {
   \************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"create-block/card","version":"0.1.0","title":"Cards","category":"widgets","icon":"smiley","description":"Example block scaffolded with Create Block tool.","supports":{"html":false},"attributes":{"cards":{"type":"array","default":[{"background":{"color":"#ffff"},"image":"https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large","title":"This is my title","titleColor":"#000","desc":"This is my description","descColor":"#ffff","btnLabel":"Button","btnUrl":"https://www.google.com/","btnColors":{"color":"#f0f0f"}}]},"columns":{"type":"object","default":{"desktop":3,"tablet":2,"mobile":1}},"columnGap":{"type":"string","default":"20px"},"rowGap":{"type":"string","default":"30px"},"theme":{"type":"string","default":"themeOne"},"padding":{"type":"object","default":{"top":"20px","right":"20px","button":"20px","left":"20px"}},"border":{"type":"object","default":{"color":"#72aee6","style":"solid","width":"0px"}},"shadows":{"type":"array","default":[]},"titleTypo":{"type":"object","default":{"fontSize":"10px"}},"descTypo":{"type":"object","default":{"fontSize":"5px"}},"buttonTypo":{"type":"object","default":{"fontSize":"5px"}}},"textdomain":"card","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"create-block/card","version":"0.1.0","title":"Cards","category":"widgets","icon":"smiley","description":"Example block scaffolded with Create Block tool.","supports":{"html":false},"attributes":{"cards":{"type":"array","default":[{"background":{"color":"#ffff"},"image":"https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large","title":"This is my title","titleColor":"#000","desc":"This is my description","descColor":"#f00","btnLabel":"Button","btnUrl":"https://www.google.com/","btnColors":{"color":"#f0f0f"}}]},"columns":{"type":"object","default":{"desktop":3,"tablet":2,"mobile":1}},"columnGap":{"type":"string","default":"20px"},"rowGap":{"type":"string","default":"30px"},"theme":{"type":"string","default":"themeOne"},"padding":{"type":"object","default":{"top":"20px","right":"20px","button":"20px","left":"20px"}},"border":{"type":"object","default":{"color":"#72aee6","style":"solid","width":"0px"}},"shadows":{"type":"array","default":[]},"titleTypo":{"type":"object","default":{"fontSize":"10px"}},"descTypo":{"type":"object","default":{"fontSize":"5px"}},"buttonTypo":{"type":"object","default":{"fontSize":"5px"}}},"textdomain":"card","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
 
 /***/ })
 

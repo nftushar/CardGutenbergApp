@@ -49,7 +49,6 @@ export default function Edit(props) {
 	};
 
 
-
 	const handleSubmit = (index) => {
 		const { attributes, setAttributes } = props;
 
@@ -61,7 +60,7 @@ export default function Edit(props) {
 			"title": "This is my title",
 			"titleColor": "#000",
 			"desc": "This is my description",
-			"descColor": "#ffff",
+			"descColor": "#000",
 			"btnLabel": "Button",
 			"btnUrl": "https://www.google.com/",
 			"btnColors": {
@@ -78,7 +77,7 @@ export default function Edit(props) {
 		setAttributes({ cards: newCards });
 		// console.log(setAttributes)
 	};
-	
+
 
 	function setColumngap(newColumngap) {
 		setAttributes({ columnGap: newColumngap });
@@ -173,8 +172,8 @@ export default function Edit(props) {
 													value={card.descColor}
 													onChange={(color) => setDescColor(color, index)}
 												/>
-												
 											</PanelRow>
+											<button>Delete</button>
 										</PanelBody>
 									</>
 								)
@@ -200,7 +199,7 @@ export default function Edit(props) {
 									<UnitControl
 										onChange={setColumngap}
 										value={attributes.columnGap}
-										
+
 									/>
 								</PanelRow>
 
@@ -278,7 +277,7 @@ export default function Edit(props) {
 							<RichText
 								{...blockProps}
 								tagName="h1"
-								
+
 								value={card.title}
 								allowedFormats={['core/bold', 'core/italic']}
 								onChange={(content) => setAttributes({ content, index })}
@@ -294,7 +293,6 @@ export default function Edit(props) {
 								placeholder={__('Description here..')}
 							/>
 							<div className="btn-wraper" ><a href={card.btnUrl} >{card.btnLabel}</a></div>
-
 						</div>
 					</div>
 
