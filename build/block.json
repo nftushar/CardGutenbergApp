@@ -1,12 +1,16 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 2,
-  "name": "create-block/card",
+  "name": "tcb/cards",
   "version": "0.1.0",
   "title": "Cards",
+  "description": "Example block scaffolded with Create Block tool.",
   "category": "widgets",
   "icon": "smiley",
-  "description": "Example block scaffolded with Create Block tool.",
+  "keywords": [
+    "alert",
+    "message"
+  ],
   "supports": {
     "html": false
   },
@@ -19,7 +23,7 @@
             "color": "#ffff"
           },
           "image": "https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large",
-          "title": "This is my title",
+          "title": "This is my titleZ",
           "titleColor": "#000",
           "desc": "This is my description",
           "descColor": "#f00",
@@ -88,6 +92,16 @@
       "type": "object",
       "default": {
         "fontSize": "5px"
+      }
+    }
+  },
+  "example": {
+    "attributes": {
+      "preview": true,
+      "columns": {
+        "desktop": 1,
+        "tablet": 1,
+        "mobile": 1
       }
     }
   },

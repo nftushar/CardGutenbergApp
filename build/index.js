@@ -59,6 +59,34 @@ function Edit(props) {
   } = attributes;
   // console.log(attributes.cards.btnColors);
 
+  const handleDelete = index => {
+    const newCards = [...cards];
+    newCards.splice(index, 1);
+    setAttributes({
+      cards: newCards
+    });
+  };
+  const handleTitle = (newTitle, index) => {
+    const newCards = [...cards];
+    newCards[index].title = newTitle;
+    setAttributes({
+      cards: newCards
+    });
+  };
+  const handleImage = (newImage, index) => {
+    const newCards = [...cards];
+    newCards[index].image = newImage;
+    setAttributes({
+      cards: newCards
+    });
+  };
+  const handleDesc = (newDesc, index) => {
+    const newCards = [...cards];
+    newCards[index].desc = newDesc;
+    setAttributes({
+      cards: newCards
+    });
+  };
   const setTitleColor = (newTitleColor, index) => {
     const newCards = [...cards];
     newCards[index].titleColor = newTitleColor;
@@ -82,17 +110,15 @@ function Edit(props) {
       cards: newCards
     });
   };
-  const handleSubmit = index => {
-    const {
-      attributes,
-      setAttributes
-    } = props;
+  const handleSubmit = () => {
+    // const { attributes, setAttributes } = props;
+
     const newCards = [...cards, {
       "background": {
         "color": "#ffff"
       },
       "image": "https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large",
-      "title": "This is my title",
+      "title": "This is my titleY",
       "titleColor": "#000",
       "desc": "This is my description",
       "descColor": "#000",
@@ -190,11 +216,13 @@ function Edit(props) {
       colors: [],
       value: card.titleColor,
       onChange: color => setTitleColor(color, index)
-    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelRow, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelRow, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("label", null, "Description Color"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ColorPalette, {
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelRow, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("label", null, "Description Color"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ColorPalette, {
       colors: [],
       value: card.descColor,
       onChange: color => setDescColor(color, index)
-    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("button", null, "Delete")));
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("button", {
+      onClick: () => handleDelete(index)
+    }, "Delete")));
   })), tab.name === "options" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
     title: "My Block Settings"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelRow, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.SelectControl, {
@@ -253,28 +281,39 @@ function Edit(props) {
 							}
 							`), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("img", {
     className: "img",
-    src: _img_shoes_jpg__WEBPACK_IMPORTED_MODULE_7__,
+    src: card.image,
     alt: "Denim Jeans"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.MediaUploadCheck, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.MediaUpload, {
+    onSelect: media => {
+      // console.log(media)
+      handleImage(media.url, index);
+    }
+    // handleImage
+    ,
+    allowedTypes: ['image'],
+    value: card.image,
+    render: _ref => {
+      let {
+        open
+      } = _ref;
+      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Button, {
+        onClick: open
+      }, "  handleImage Open Media Library");
+    }
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: "card-body"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.RichText, (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.blockProps, {
     tagName: "h1",
     value: card.title,
     allowedFormats: ['core/bold', 'core/italic'],
-    onChange: content => setAttributes({
-      content,
-      index
-    }),
+    onChange: content => handleTitle(content, index),
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Title here..', 'info-cards')
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.RichText, (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.blockProps, {
     tagName: "p",
     className: "desc",
     value: card.desc,
     allowedFormats: ['core/bold', 'core/italic'],
-    onChange: content => setAttributes({
-      content,
-      index
-    }),
+    onChange: content => handleDesc(content, index),
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Description here..')
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: "btn-wraper"
@@ -516,7 +555,7 @@ function _extends() {
   \************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"create-block/card","version":"0.1.0","title":"Cards","category":"widgets","icon":"smiley","description":"Example block scaffolded with Create Block tool.","supports":{"html":false},"attributes":{"cards":{"type":"array","default":[{"background":{"color":"#ffff"},"image":"https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large","title":"This is my title","titleColor":"#000","desc":"This is my description","descColor":"#f00","btnLabel":"Button","btnUrl":"https://www.google.com/","btnColors":{"color":"#f0f0f"}}]},"columns":{"type":"object","default":{"desktop":3,"tablet":2,"mobile":1}},"columnGap":{"type":"string","default":"20px"},"rowGap":{"type":"string","default":"30px"},"theme":{"type":"string","default":"themeOne"},"padding":{"type":"object","default":{"top":"20px","right":"20px","button":"20px","left":"20px"}},"border":{"type":"object","default":{"color":"#72aee6","style":"solid","width":"0px"}},"shadows":{"type":"array","default":[]},"titleTypo":{"type":"object","default":{"fontSize":"10px"}},"descTypo":{"type":"object","default":{"fontSize":"5px"}},"buttonTypo":{"type":"object","default":{"fontSize":"5px"}}},"textdomain":"card","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"tcb/cards","version":"0.1.0","title":"Cards","description":"Example block scaffolded with Create Block tool.","category":"widgets","icon":"smiley","keywords":["alert","message"],"supports":{"html":false},"attributes":{"cards":{"type":"array","default":[{"background":{"color":"#ffff"},"image":"https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large","title":"This is my titleZ","titleColor":"#000","desc":"This is my description","descColor":"#f00","btnLabel":"Button","btnUrl":"https://www.google.com/","btnColors":{"color":"#f0f0f"}}]},"columns":{"type":"object","default":{"desktop":3,"tablet":2,"mobile":1}},"columnGap":{"type":"string","default":"20px"},"rowGap":{"type":"string","default":"30px"},"theme":{"type":"string","default":"themeOne"},"padding":{"type":"object","default":{"top":"20px","right":"20px","button":"20px","left":"20px"}},"border":{"type":"object","default":{"color":"#72aee6","style":"solid","width":"0px"}},"shadows":{"type":"array","default":[]},"titleTypo":{"type":"object","default":{"fontSize":"10px"}},"descTypo":{"type":"object","default":{"fontSize":"5px"}},"buttonTypo":{"type":"object","default":{"fontSize":"5px"}}},"example":{"attributes":{"preview":true,"columns":{"desktop":1,"tablet":1,"mobile":1}}},"textdomain":"card","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
 
 /***/ })
 

@@ -1,8 +1,8 @@
 import { __ } from '@wordpress/i18n';
-import { blockProps, useBlockProps, InspectorControls, RichText } from '@wordpress/block-editor';
+import { blockProps, useBlockProps, InspectorControls, RichText, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
 import {
-	__experimentalUnitControl as UnitControl, __experimentalNumberControl as NumberControl,
-	TabPanel, colors, PanelBody, columnGap, descColor, PanelRow, SelectControl, __experimentalBoxControl as BoxControl, ColorPalette, __experimentalText as Text, TextInput, TextControl,
+	__experimentalUnitControl as UnitControl, Button, __experimentalNumberControl as NumberControl,
+	TabPanel, url, colors, PanelBody, columnGap, descColor, PanelRow, SelectControl, __experimentalBoxControl as BoxControl, ColorPalette, __experimentalText as Text, TextInput, TextControl,
 	btnLabel, btnUrl, setBtnUrl
 } from '@wordpress/components';
 
@@ -28,6 +28,32 @@ export default function Edit(props) {
 	const { cards } = attributes;
 	// console.log(attributes.cards.btnColors);
 
+	const handleDelete = (index) => {
+		const newCards = [...cards];
+		newCards.splice(index, 1);
+		setAttributes({ cards: newCards });
+
+	};
+
+	const handleTitle = (newTitle, index) => {
+		const newCards = [...cards];
+		newCards[index].title = newTitle;
+		setAttributes({ cards: newCards });
+	};
+
+	const handleImage = (newImage, index) => {
+		const newCards = [...cards];
+		newCards[index].image = newImage;
+		setAttributes({ cards: newCards });
+	}
+
+	const handleDesc = (newDesc, index) => {
+		const newCards = [...cards];
+		newCards[index].desc = newDesc;
+		setAttributes({ cards: newCards });
+	};
+
+
 	const setTitleColor = (newTitleColor, index) => {
 		const newCards = [...cards];
 		newCards[index].titleColor = newTitleColor;
@@ -49,15 +75,15 @@ export default function Edit(props) {
 	};
 
 
-	const handleSubmit = (index) => {
-		const { attributes, setAttributes } = props;
+	const handleSubmit = () => {
+		// const { attributes, setAttributes } = props;
 
 		const newCards = [...cards, {
 			"background": {
 				"color": "#ffff"
 			},
 			"image": "https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large",
-			"title": "This is my title",
+			"title": "This is my titleY",
 			"titleColor": "#000",
 			"desc": "This is my description",
 			"descColor": "#000",
@@ -66,6 +92,7 @@ export default function Edit(props) {
 			"btnColors": {
 				"color": "#f0f0f"
 			}
+
 		}];
 		setAttributes({ cards: newCards });
 	}
@@ -100,6 +127,7 @@ export default function Edit(props) {
 		setAttributes({ border: newBorder });
 	};
 	// border///////////////////////////////
+
 
 	const [values, setValues] = useState({
 		top: '50px',
@@ -162,9 +190,7 @@ export default function Edit(props) {
 													onChange={(color) => setTitleColor(color, index)}
 												/>
 											</PanelRow>
-											<PanelRow>
 
-											</PanelRow>
 											<PanelRow>
 												<label>Description Color</label>
 												<ColorPalette
@@ -173,7 +199,7 @@ export default function Edit(props) {
 													onChange={(color) => setDescColor(color, index)}
 												/>
 											</PanelRow>
-											<button>Delete</button>
+											<button onClick={() => handleDelete(index)} >Delete</button>
 										</PanelBody>
 									</>
 								)
@@ -199,7 +225,6 @@ export default function Edit(props) {
 									<UnitControl
 										onChange={setColumngap}
 										value={attributes.columnGap}
-
 									/>
 								</PanelRow>
 
@@ -252,9 +277,7 @@ export default function Edit(props) {
 
 			</style>
 
-
 			<div className="cards">
-
 				{/* card one */}
 				{cards.map((card, index) => (
 					<div className={`card card-${index}`}>
@@ -269,9 +292,23 @@ export default function Edit(props) {
 							}
 							`}
 
-
 						</style>
-						<img className="img" src={shoes} alt="Denim Jeans" />
+						<img className="img" src={card.image} alt="Denim Jeans" />
+						<MediaUploadCheck>
+							<MediaUpload
+								onSelect={(media) => {
+									// console.log(media)
+									handleImage(media.url, index)
+								}
+								}
+								// handleImage
+								allowedTypes={['image']}
+								value={ card.image }
+								render={({ open }) => (
+									<Button onClick={open}>  handleImage Open Media Library</Button>
+								)}
+							/>
+						</MediaUploadCheck>
 						<div className="card-body">
 
 							<RichText
@@ -280,16 +317,17 @@ export default function Edit(props) {
 
 								value={card.title}
 								allowedFormats={['core/bold', 'core/italic']}
-								onChange={(content) => setAttributes({ content, index })}
+								onChange={(content) => handleTitle(content, index)}
 								placeholder={__('Title here..', 'info-cards')}
 							/>
+
 							<RichText
 								{...blockProps}
 								tagName="p"
 								className='desc'
 								value={card.desc}
 								allowedFormats={['core/bold', 'core/italic']}
-								onChange={(content) => setAttributes({ content, index })}
+								onChange={(content) => handleDesc(content, index)}
 								placeholder={__('Description here..')}
 							/>
 							<div className="btn-wraper" ><a href={card.btnUrl} >{card.btnLabel}</a></div>

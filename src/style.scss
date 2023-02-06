@@ -5,7 +5,7 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-.wp-block-create-block-card {
+.wp-block-tcb-cards {
 	.cards {
 		display: grid;
 		// column-gap: 20px;
@@ -17,7 +17,7 @@
 			background-color: rgba(255, 255, 255, 0.8);
 			padding: 20px;
 			font-size: 30px;
-			text-align: center;
+			// text-align: center;
 
 			border-radius: 8px;
 			box-shadow: 0 4px 8px 0 rgba(126, 43, 43, 0.2);
@@ -66,6 +66,7 @@
 				overflow: hidden;
 				border-top-right-radius: 8px;
 				border-top-left-radius: 8px;
+				// max-width: 100%;
 			}
 
 			img.img2 {
