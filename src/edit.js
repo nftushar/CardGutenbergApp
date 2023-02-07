@@ -6,10 +6,9 @@ import Settings from './Settings';
 import { getBoxValue } from './utils/functions';
 
 
-
  function Edit(props) {
 	const { attributes, setAttributes } = props;
-	const { columns, cards, contentPadding, btnPadding } = attributes;
+	 const { columns, cards, contentPadding, btnPadding, } = attributes;
 
 
 	  const updateCard = (index, which, value) => {
@@ -18,11 +17,9 @@ import { getBoxValue } from './utils/functions';
 		setAttributes({ cards: newCards });
 	}
 
-
-
 	return (
 		<div {...useBlockProps()}>
-			<Settings attributes={attributes} setAttributes={setAttributes} />
+			<Settings attributes={attributes} setAttributes={setAttributes} updateCard={updateCard} />
 
 
 			<style>
@@ -42,7 +39,6 @@ import { getBoxValue } from './utils/functions';
 							{`.cards .card-${index} h1 {
 								color:${card.titleColor}; 
 				           	} 
-
 							.cards .card-${index} .desc{
                                 color:${card.descColor}
 							}

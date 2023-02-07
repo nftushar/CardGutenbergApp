@@ -211,7 +211,8 @@ __webpack_require__.r(__webpack_exports__);
 const Settings = props => {
   const {
     attributes,
-    setAttributes
+    setAttributes,
+    updateCard
   } = props;
   const {
     cards,
@@ -237,27 +238,25 @@ const Settings = props => {
       cards: newCards
     });
   };
-  const setTitleColor = (newTitleColor, index) => {
-    const newCards = [...cards];
-    newCards[index].titleColor = newTitleColor;
-    setAttributes({
-      cards: newCards
-    });
-  };
-  const setBtnLabel = (newBtnLabel, index) => {
-    const newCards = [...cards];
-    newCards[index].btnLabel = newBtnLabel;
-    setAttributes({
-      cards: newCards
-    });
-  };
-  const setBtnUrl = (newBtnUrl, index) => {
-    const newCards = [...cards];
-    newCards[index].btnUrl = newBtnUrl;
-    setAttributes({
-      cards: newCards
-    });
-  };
+
+  // const setTitleColor = (newTitleColor, index) => {
+  //     const newCards = [...cards];
+  //     newCards[index].titleColor = newTitleColor;
+  //     setAttributes({ cards: newCards });
+  // };
+
+  // const setBtnLabel = (newBtnLabel, index) => {
+  //     const newCards = [...cards];
+  //     newCards[index].btnLabel = newBtnLabel;
+  //     setAttributes({ cards: newCards });
+  // };
+
+  // const setBtnUrl = (newBtnUrl, index) => {
+  //     const newCards = [...cards];
+  //     newCards[index].btnUrl = newBtnUrl;
+  //     setAttributes({ cards: newCards });
+  // };
+
   const handleSubmit = () => {
     // const { attributes, setAttributes } = props;
 
@@ -286,9 +285,7 @@ const Settings = props => {
     setAttributes({
       cards: newCards
     });
-    // console.log(setAttributes)
   };
-
   function setColumngap(newColumngap) {
     setAttributes({
       columnGap: newColumngap
@@ -337,8 +334,10 @@ const Settings = props => {
       initialOpen: index ? false : true
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelRow, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
       label: "Add button Label",
-      value: card.btnLabel,
-      onChange: btnLabel => setBtnLabel(btnLabel, index)
+      value: card.btnLabel
+      // onChange={(btnLabel) => setBtnLabel(btnLabel, index)}
+      ,
+      onChange: content => updateCard(index, 'btnLabel', content)
     })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelRow, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUploadCheck, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUpload, {
       onSelect: media => {
         // console.log(media)
@@ -360,15 +359,15 @@ const Settings = props => {
       label: "Add button Url",
       titleColor: true,
       value: card.btnUrl,
-      onChange: btnUrl => setBtnUrl(btnUrl, index)
+      onChange: content => updateCard(index, 'btnUrl', content)
     })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelRow, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, "Title Color"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ColorPalette, {
       colors: [],
       value: card.titleColor,
-      onChange: color => setTitleColor(color, index)
+      onChange: content => updateCard(index, 'titleColor', content)
     })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelRow, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, "Description Color"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ColorPalette, {
       colors: [],
       value: card.descColor,
-      onChange: color => setDescColor(color, index)
+      onChange: content => updateCard(index, 'descColor', content)
     })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
       onClick: () => handleDelete(index)
     }, "Delete")));
@@ -490,7 +489,8 @@ function Edit(props) {
   };
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps)(), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_Settings__WEBPACK_IMPORTED_MODULE_5__["default"], {
     attributes: attributes,
-    setAttributes: setAttributes
+    setAttributes: setAttributes,
+    updateCard: updateCard
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("style", null, `
                     .cards {
 						column-gap:${attributes.columnGap};
@@ -503,7 +503,6 @@ function Edit(props) {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("style", null, `.cards .card-${index} h1 {
 								color:${card.titleColor}; 
 				           	} 
-
 							.cards .card-${index} .desc{
                                 color:${card.descColor}
 							}

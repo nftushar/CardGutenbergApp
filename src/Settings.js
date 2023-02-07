@@ -2,8 +2,7 @@ import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 import { InspectorControls, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
-import {
-    RangeControl, __experimentalNumberControl as NumberControl, __experimentalUnitControl as UnitControl, Button, TabPanel,
+import {  RangeControl, __experimentalUnitControl as UnitControl, Button, TabPanel,
     PanelBody, PanelRow, SelectControl, __experimentalBoxControl as BoxControl, ColorPalette, TextControl
 } from '@wordpress/components';
 
@@ -11,7 +10,7 @@ import BDevice from '../../Components/BDevice';
 import Title from '../../Components/Title';
 
 const Settings = (props) => {
-    const { attributes, setAttributes } = props;
+    const { attributes, setAttributes, updateCard } = props;
     const { cards, columns, columnGap, rowGap, theme, contentPadding, btnPadding } = attributes;
 
     const [device, setDevice] = useState('desktop');
@@ -28,23 +27,23 @@ const Settings = (props) => {
         setAttributes({ cards: newCards });
     };
 
-    const setTitleColor = (newTitleColor, index) => {
-        const newCards = [...cards];
-        newCards[index].titleColor = newTitleColor;
-        setAttributes({ cards: newCards });
-    };
+    // const setTitleColor = (newTitleColor, index) => {
+    //     const newCards = [...cards];
+    //     newCards[index].titleColor = newTitleColor;
+    //     setAttributes({ cards: newCards });
+    // };
 
-    const setBtnLabel = (newBtnLabel, index) => {
-        const newCards = [...cards];
-        newCards[index].btnLabel = newBtnLabel;
-        setAttributes({ cards: newCards });
-    };
+    // const setBtnLabel = (newBtnLabel, index) => {
+    //     const newCards = [...cards];
+    //     newCards[index].btnLabel = newBtnLabel;
+    //     setAttributes({ cards: newCards });
+    // };
 
-    const setBtnUrl = (newBtnUrl, index) => {
-        const newCards = [...cards];
-        newCards[index].btnUrl = newBtnUrl;
-        setAttributes({ cards: newCards });
-    };
+    // const setBtnUrl = (newBtnUrl, index) => {
+    //     const newCards = [...cards];
+    //     newCards[index].btnUrl = newBtnUrl;
+    //     setAttributes({ cards: newCards });
+    // };
 
     const handleSubmit = () => {
         // const { attributes, setAttributes } = props;
@@ -73,7 +72,7 @@ const Settings = (props) => {
         const newCards = [...cards];
         newCards[index].descColor = newDescColor;
         setAttributes({ cards: newCards });
-        // console.log(setAttributes)
+       
     };
 
     function setColumngap(newColumngap) {
@@ -126,7 +125,9 @@ const Settings = (props) => {
                                         <TextControl
                                             label="Add button Label"
                                             value={card.btnLabel}
-                                            onChange={(btnLabel) => setBtnLabel(btnLabel, index)}
+                                            // onChange={(btnLabel) => setBtnLabel(btnLabel, index)}
+                                            onChange={(content) => updateCard(index, 'btnLabel', content)}
+
                                         />
                                     </PanelRow>
                                     <PanelRow>
@@ -150,7 +151,8 @@ const Settings = (props) => {
                                         <TextControl
                                             label="Add button Url" titleColor
                                             value={card.btnUrl}
-                                            onChange={(btnUrl) => setBtnUrl(btnUrl, index)}
+                                            onChange={(content) => updateCard(index, 'btnUrl', content)}
+
                                         />
                                     </PanelRow>
 
@@ -159,7 +161,8 @@ const Settings = (props) => {
                                         <ColorPalette
                                             colors={[]}
                                             value={card.titleColor}
-                                            onChange={(color) => setTitleColor(color, index)}
+                                            onChange={(content) => updateCard(index, 'titleColor', content)}
+
                                         />
                                     </PanelRow>
 
@@ -168,7 +171,8 @@ const Settings = (props) => {
                                         <ColorPalette
                                             colors={[]}
                                             value={card.descColor}
-                                            onChange={(color) => setDescColor(color, index)}
+                                            onChange={(content) => updateCard(index, 'descColor', content)}
+
                                         />
                                     </PanelRow>
                                     <button onClick={() => handleDelete(index)} >Delete</button>
