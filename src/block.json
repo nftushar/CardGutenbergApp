@@ -52,12 +52,12 @@
 			"type": "string",
 			"default": "themeOne"
 		},
-		"padding": {
+		"contentPadding": {
 			"type": "object",
 			"default": {
 				"top": "20px",
 				"right": "20px",
-				"button": "20px",
+				"bottom": "20px",
 				"left": "20px"
 			}
 		},
@@ -89,6 +89,15 @@
 			"type": "object",
 			"default": {
 				"fontSize": "5px"
+			}
+		},
+		"btnPadding": {
+			"type": "object",
+			"default": {
+				"top": "10px",
+				"right": "25px",
+				"bottom": "10px",
+				"left": "25px"
 			}
 		}
 	},

@@ -30,22 +30,23 @@ function create_block_card_block_init() {
 	register_block_type( __DIR__ . '/build', [
     "style"=>'gutenberg-cards-dynamict',
 		"render_callback"=> function($attrs){
+            extract( $attrs );
 
 			ob_start(); ?>
 
-          <div tabindex="0" id="block-11300c3a-52d5-4953-bd01-94676c85b2c7" role="document" aria-label="Block: Cards" data-block="11300c3a-52d5-4953-bd01-94676c85b2c7" data-type="tcb/cards" data-title="Cards" class="block-editor-block-list__block wp-block is-selected wp-block-tcb-cards">
+          <div class="wp-block-tcb-cards">
             <style>
                 .cards {
-                column-gap:20px;
-                row-gap:30px;
+                    column-gap:20px;
+                    row-gap:30px;
                 }
             </style>
-            <div class="cards">
+            <div class='cards columns-<?php echo esc_attr( $columns['desktop'] ); ?> columns-tablet-<?php echo esc_attr( $columns['tablet'] ); ?> 
+            columns-mobile-<?php echo esc_attr( $columns['mobile'] ); ?>'>
+            
 <?php
-	
           // <!-- HTML -->
           foreach($attrs['cards'] as $content){
-
  ?>
   
       <div class="card card-0">

@@ -1,284 +1,40 @@
 import { __ } from '@wordpress/i18n';
-import { blockProps, useBlockProps, InspectorControls, RichText, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
-import {
-	__experimentalUnitControl as UnitControl, Button, __experimentalNumberControl as NumberControl,
-	TabPanel, url, colors, PanelBody, columnGap, descColor, PanelRow, SelectControl, __experimentalBoxControl as BoxControl, ColorPalette, __experimentalText as Text, TextInput, TextControl,
-	btnLabel, btnUrl, setBtnUrl
-} from '@wordpress/components';
-
-import { useState } from '@wordpress/element';
-import { registerBlockType } from '@wordpress/blocks';
-import music from './img/music.jpg';
-import shoes from './img/shoes.jpg';
-import spider from './img/spider.jpg';
+import { blockProps, useBlockProps, RichText } from '@wordpress/block-editor';
 
 import './editor.scss';
+import Settings from './Settings';
+import { getBoxValue } from './utils/functions';
 
 
-export default function Edit(props) {
 
-	const [color, setColor] = useState('#f00');
-	const colors = [
-		{ name: 'red', color: '#f00' },
-		{ name: 'white', color: '#fff' },
-		{ name: 'blue', color: '#00f' },
-	];
-
+ function Edit(props) {
 	const { attributes, setAttributes } = props;
-	const { cards } = attributes;
-	// console.log(attributes.cards.btnColors);
+	const { columns, cards, contentPadding, btnPadding } = attributes;
 
-	const handleDelete = (index) => {
+
+	  const updateCard = (index, which, value) => {
 		const newCards = [...cards];
-		newCards.splice(index, 1);
-		setAttributes({ cards: newCards });
-
-	};
-
-	const handleTitle = (newTitle, index) => {
-		const newCards = [...cards];
-		newCards[index].title = newTitle;
-		setAttributes({ cards: newCards });
-	};
-
-	const handleImage = (newImage, index) => {
-		const newCards = [...cards];
-		newCards[index].image = newImage;
-		setAttributes({ cards: newCards });
-	}
-
-	const handleDesc = (newDesc, index) => {
-		const newCards = [...cards];
-		newCards[index].desc = newDesc;
-		setAttributes({ cards: newCards });
-	};
-
-
-	const setTitleColor = (newTitleColor, index) => {
-		const newCards = [...cards];
-		newCards[index].titleColor = newTitleColor;
-		setAttributes({ cards: newCards });
-	};
-
-	const setBtnLabel = (newBtnLabel, index) => {
-		// console.log('hello');
-		const newCards = [...cards];
-		newCards[index].btnLabel = newBtnLabel;
-		setAttributes({ cards: newCards });
-	};
-
-	const setBtnUrl = (newBtnUrl, index) => {
-		// console.log('hello');
-		const newCards = [...cards];
-		newCards[index].btnUrl = newBtnUrl;
-		setAttributes({ cards: newCards });
-	};
-
-
-	const handleSubmit = () => {
-		// const { attributes, setAttributes } = props;
-
-		const newCards = [...cards, {
-			"background": {
-				"color": "#ffff"
-			},
-			"image": "https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large",
-			"title": "This is my titleY",
-			"titleColor": "#000",
-			"desc": "This is my description",
-			"descColor": "#000",
-			"btnLabel": "Button",
-			"btnUrl": "https://www.google.com/",
-			"btnColors": {
-				"color": "#f0f0f"
-			}
-
-		}];
+		newCards[index][which] = value;
 		setAttributes({ cards: newCards });
 	}
 
 
-	const setDescColor = (newDescColor, index) => {
-		const newCards = [...cards];
-		newCards[index].descColor = newDescColor;
-		setAttributes({ cards: newCards });
-		// console.log(setAttributes)
-	};
-
-
-	function setColumngap(newColumngap) {
-		setAttributes({ columnGap: newColumngap });
-	};
-	function setRowgap(newRowgap) {
-		setAttributes({ rowGap: newRowgap });
-	};
-	const setTheme = (newTheme) => {
-		setAttributes({ theme: newTheme });
-	};
-
-	const setPadding = (newPadding) => {
-		// console.log(newPadding);
-		setAttributes({ padding: newPadding });
-	};
-
-	// border///////////////////////////////
-	const setBorder = (newBorder) => {
-		// console.log(newBorder);
-		setAttributes({ border: newBorder });
-	};
-	// border///////////////////////////////
-
-
-	const [values, setValues] = useState({
-		top: '50px',
-		left: '10%',
-		right: '10%',
-		bottom: '50px',
-	});
 
 	return (
 		<div {...useBlockProps()}>
-			<InspectorControls>
-				<TabPanel
-					className="my-tab-panel"
-					activeClass="active-tab"
-					// onSelect={onSelect}
-					tabs={[
-						{
-							name: 'options',
-							title: 'options',
-							className: 'options',
-						},
-						{
-							name: 'style',
-							title: 'style',
-							className: 'style',
-						},
-					]}
-				>
-					{(tab) => <div>
-						{/* //////////////////////////////// PanelBody Two  //////////////////////////////// */}
-						<PanelBody title='This is card two' >
-							<PanelRow>
-								<button className='btn-wraper' onClick={() => handleSubmit()}>Add</button>
-							</PanelRow>
+			<Settings attributes={attributes} setAttributes={setAttributes} />
 
-							{cards.map((card, index) => {
-								return (
-									<>
-										<PanelBody title={`Card :${index + 1};`} initialOpen={index ? false : true}  >
-											<PanelRow>
-												<TextControl
-													label="Add button Label"
-													value={card.btnLabel}
-													onChange={(btnLabel) => setBtnLabel(btnLabel, index)}
-												/>
-											</PanelRow>
-											<PanelRow>
-												<TextControl
-													label="Add button Url" titlecolo
-													value={card.btnUrl}
-													onChange={(btnUrl) => setBtnUrl(btnUrl, index)}
-												/>
-											</PanelRow>
 
-											<PanelRow>
-												<label>Title Color</label>
-												<ColorPalette
-													colors={[]}
-													value={card.titleColor}
-													onChange={(color) => setTitleColor(color, index)}
-												/>
-											</PanelRow>
-
-											<PanelRow>
-												<label>Description Color</label>
-												<ColorPalette
-													colors={[]}
-													value={card.descColor}
-													onChange={(color) => setDescColor(color, index)}
-												/>
-											</PanelRow>
-											<button onClick={() => handleDelete(index)} >Delete</button>
-										</PanelBody>
-									</>
-								)
-							})}
-
-						</PanelBody>
-
-						{tab.name === "options" && <div>
-							<PanelBody title="My Block Settings">
-								<PanelRow>
-									<SelectControl
-										label="Chose One"
-										options={[
-											{ label: 'Card one', value: 'card-one' },
-											{ label: 'Card two', value: 'card-two' },
-											{ label: 'Card three', value: 'card-three' },
-										]}
-									/>
-								</PanelRow>
-
-								<PanelRow>
-									<label>column Gap</label>
-									<UnitControl
-										onChange={setColumngap}
-										value={attributes.columnGap}
-									/>
-								</PanelRow>
-
-								<PanelRow>
-									<label>Row Gap</label>
-									<UnitControl
-										onChange={setRowgap}
-										value={attributes.rowGap}
-									/>
-								</PanelRow>
-
-								<PanelRow>
-									<SelectControl
-										label="Chose Theme"
-										options={[
-											{ label: 'Theme one', value: 'theme-one' },
-											{ label: 'Theme two', value: 'theme-two' },
-											{ label: 'Theme three', value: 'theme-three' },
-										]}
-										onChange={setTheme}
-										value={attributes.theme}
-									/>
-								</PanelRow>
-
-								<PanelRow>
-									<BoxControl
-										// Padding
-										label="Set Paddign"
-										values={attributes.padding}
-										onChange={setPadding}
-									/>
-								</PanelRow>
-
-								<PanelRow>
-									{/* border */}
-								</PanelRow>
-
-							</PanelBody>
-						</div>}
-					</div>}
-				</TabPanel>
-			</InspectorControls>
 			<style>
 				{`
                     .cards {
-                          column-gap:${attributes.columnGap};
-                          row-gap:${attributes.rowGap};
-						 }
+						column-gap:${attributes.columnGap};
+						row-gap:${attributes.rowGap};
+					}
 				`}
-
 			</style>
 
-			<div className="cards">
-				{/* card one */}
+			<div className={`cards columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`}>
 				{cards.map((card, index) => (
 					<div className={`card card-${index}`}>
 
@@ -288,36 +44,28 @@ export default function Edit(props) {
 				           	} 
 
 							.cards .card-${index} .desc{
-                                 color:${card.descColor}
+                                color:${card.descColor}
+							}
+
+							.cards .card-body{
+								padding: ${getBoxValue(contentPadding)};
+							}
+
+							.cards .btn-wraper a{
+								padding: ${getBoxValue(btnPadding)};
 							}
 							`}
-
 						</style>
 						<img className="img" src={card.image} alt="Denim Jeans" />
-						<MediaUploadCheck>
-							<MediaUpload
-								onSelect={(media) => {
-									// console.log(media)
-									handleImage(media.url, index)
-								}
-								}
-								// handleImage
-								allowedTypes={['image']}
-								value={ card.image }
-								render={({ open }) => (
-									<Button onClick={open}>  handleImage Open Media Library</Button>
-								)}
-							/>
-						</MediaUploadCheck>
+
 						<div className="card-body">
 
 							<RichText
 								{...blockProps}
 								tagName="h1"
-
 								value={card.title}
 								allowedFormats={['core/bold', 'core/italic']}
-								onChange={(content) => handleTitle(content, index)}
+								onChange={(content) => updateCard(index, 'title', content)}
 								placeholder={__('Title here..', 'info-cards')}
 							/>
 
@@ -327,14 +75,16 @@ export default function Edit(props) {
 								className='desc'
 								value={card.desc}
 								allowedFormats={['core/bold', 'core/italic']}
-								onChange={(content) => handleDesc(content, index)}
+								onChange={(content) => updateCard(index, 'desc', content)}
 								placeholder={__('Description here..')}
 							/>
-							<div className="btn-wraper" ><a href={card.btnUrl} >{card.btnLabel}</a></div>
+							<div className="btn-wraper" ><a href={card.btnUrl}>{card.btnLabel}</a></div>
 						</div>
 					</div>
 
 				))}
+
+
 
 				{/* card two */}
 				{/* <div className="card">
@@ -448,4 +198,4 @@ export default function Edit(props) {
 	);
 }
 
-// export default Edit;
+export default Edit;
