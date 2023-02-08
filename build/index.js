@@ -215,6 +215,8 @@ const Settings = props => {
     updateCard
   } = props;
   const {
+    descTypo,
+    titleTypo,
     cards,
     columns,
     columnGap,
@@ -279,13 +281,24 @@ const Settings = props => {
       cards: newCards
     });
   };
-  const setDescColor = (newDescColor, index) => {
-    const newCards = [...cards];
-    newCards[index].descColor = newDescColor;
+  function setTitleTypo(newTitleTypo) {
     setAttributes({
-      cards: newCards
+      titleTypo: {
+        ...titleTypo,
+        fontSize: newTitleTypo
+      }
     });
-  };
+  }
+  ;
+  function setDescTypo(newDescTypo) {
+    setAttributes({
+      descTypo: {
+        ...descTypo,
+        fontSize: newDescTypo
+      }
+    });
+  }
+  ;
   function setColumngap(newColumngap) {
     setAttributes({
       columnGap: newColumngap
@@ -304,7 +317,6 @@ const Settings = props => {
     });
   };
   const setBorder = newBorder => {
-    // console.log(newBorder);
     setAttributes({
       border: newBorder
     });
@@ -328,7 +340,13 @@ const Settings = props => {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelRow, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     className: "btn-wraper",
     onClick: () => handleSubmit()
-  }, "Add")), cards.map((card, index) => {
+  }, "Add")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelRow, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, "Title Font Size"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalUnitControl, {
+    onChange: setTitleTypo,
+    value: titleTypo.fontSize
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelRow, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, "Description Font Size"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalUnitControl, {
+    onChange: setDescTypo,
+    value: descTypo.fontSize
+  })), cards.map((card, index) => {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
       title: `Card :${index + 1};`,
       initialOpen: index ? false : true
@@ -340,11 +358,8 @@ const Settings = props => {
       onChange: content => updateCard(index, 'btnLabel', content)
     })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelRow, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUploadCheck, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUpload, {
       onSelect: media => {
-        // console.log(media)
         handleImage(media.url, index);
-      }
-      // handleImage
-      ,
+      },
       allowedTypes: ['image'],
       value: card.image,
       render: _ref => {
@@ -357,7 +372,7 @@ const Settings = props => {
       }
     }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelRow, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
       label: "Add button Url",
-      titleColor: true,
+      titleUrl: true,
       value: card.btnUrl,
       onChange: content => updateCard(index, 'btnUrl', content)
     })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelRow, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, "Title Color"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ColorPalette, {
@@ -475,6 +490,8 @@ function Edit(props) {
     setAttributes
   } = props;
   const {
+    titleTypo,
+    descTypo,
     columns,
     cards,
     contentPadding,
@@ -496,24 +513,30 @@ function Edit(props) {
 						column-gap:${attributes.columnGap};
 						row-gap:${attributes.rowGap};
 					}
+					.cards .card-body{
+						padding: ${(0,_utils_functions__WEBPACK_IMPORTED_MODULE_6__.getBoxValue)(contentPadding)};
+					}
+					.cards .btn-wraper a{
+						padding: ${(0,_utils_functions__WEBPACK_IMPORTED_MODULE_6__.getBoxValue)(btnPadding)};
+					}
+			    	.cards .card h1{
+						font-size:${titleTypo.fontSize};
+				    } 
+					.cards .card p.desc {
+						font-size:${descTypo.fontSize};
+				    } 
 				`), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: `cards columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`
   }, cards.map((card, index) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: `card card-${index}`
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("style", null, `.cards .card-${index} h1 {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("style", null, `.cards .card-${index} h1{
 								color:${card.titleColor}; 
+							
 				           	} 
 							.cards .card-${index} .desc{
                                 color:${card.descColor}
 							}
 
-							.cards .card-body{
-								padding: ${(0,_utils_functions__WEBPACK_IMPORTED_MODULE_6__.getBoxValue)(contentPadding)};
-							}
-
-							.cards .btn-wraper a{
-								padding: ${(0,_utils_functions__WEBPACK_IMPORTED_MODULE_6__.getBoxValue)(btnPadding)};
-							}
 							`), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("img", {
     className: "img",
     src: card.image,

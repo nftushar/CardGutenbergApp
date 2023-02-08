@@ -2,7 +2,8 @@ import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 import { InspectorControls, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
-import {  RangeControl, __experimentalUnitControl as UnitControl, Button, TabPanel,
+import {
+    RangeControl, __experimentalUnitControl as UnitControl, Button, TabPanel,
     PanelBody, PanelRow, SelectControl, __experimentalBoxControl as BoxControl, ColorPalette, TextControl
 } from '@wordpress/components';
 
@@ -11,7 +12,7 @@ import Title from '../../Components/Title';
 
 const Settings = (props) => {
     const { attributes, setAttributes, updateCard } = props;
-    const { cards, columns, columnGap, rowGap, theme, contentPadding, btnPadding } = attributes;
+    const { descTypo, titleTypo, cards, columns, columnGap, rowGap, theme, contentPadding, btnPadding } = attributes;
 
     const [device, setDevice] = useState('desktop');
 
@@ -68,16 +69,18 @@ const Settings = (props) => {
     }
 
 
-    const setDescColor = (newDescColor, index) => {
-        const newCards = [...cards];
-        newCards[index].descColor = newDescColor;
-        setAttributes({ cards: newCards });
-       
+
+    function setTitleTypo(newTitleTypo) {
+        setAttributes({ titleTypo: { ...titleTypo, fontSize: newTitleTypo } });
+    };
+    function setDescTypo(newDescTypo) {
+        setAttributes({ descTypo: { ...descTypo, fontSize: newDescTypo } });
     };
 
     function setColumngap(newColumngap) {
         setAttributes({ columnGap: newColumngap });
     };
+
 
     function setRowgap(newRowgap) {
         setAttributes({ rowGap: newRowgap });
@@ -88,7 +91,6 @@ const Settings = (props) => {
 
 
     const setBorder = (newBorder) => {
-        // console.log(newBorder);
         setAttributes({ border: newBorder });
     };
 
@@ -116,7 +118,20 @@ const Settings = (props) => {
                     <PanelRow>
                         <button className='btn-wraper' onClick={() => handleSubmit()}>Add</button>
                     </PanelRow>
-
+                    <PanelRow>
+                        <label>Title Font Size</label>
+                        <UnitControl
+                            onChange={setTitleTypo}
+                            value={titleTypo.fontSize}
+                        />
+                    </PanelRow>
+                    <PanelRow>
+                        <label>Description Font Size</label>
+                        <UnitControl
+                            onChange={setDescTypo}
+                            value={descTypo.fontSize}
+                        />
+                    </PanelRow>
                     {cards.map((card, index) => {
                         return (
                             <>
@@ -134,11 +149,11 @@ const Settings = (props) => {
                                         <MediaUploadCheck>
                                             <MediaUpload
                                                 onSelect={(media) => {
-                                                    // console.log(media)
+
                                                     handleImage(media.url, index)
                                                 }
                                                 }
-                                                // handleImage
+
                                                 allowedTypes={['image']}
                                                 value={card.image}
                                                 render={({ open }) => (
@@ -149,7 +164,7 @@ const Settings = (props) => {
                                     </PanelRow>
                                     <PanelRow>
                                         <TextControl
-                                            label="Add button Url" titleColor
+                                            label="Add button Url" titleUrl
                                             value={card.btnUrl}
                                             onChange={(content) => updateCard(index, 'btnUrl', content)}
 
@@ -166,15 +181,16 @@ const Settings = (props) => {
                                         />
                                     </PanelRow>
 
+
                                     <PanelRow>
                                         <label>Description Color</label>
                                         <ColorPalette
                                             colors={[]}
                                             value={card.descColor}
                                             onChange={(content) => updateCard(index, 'descColor', content)}
-
                                         />
                                     </PanelRow>
+
                                     <button onClick={() => handleDelete(index)} >Delete</button>
                                 </PanelBody>
                             </>
@@ -201,7 +217,6 @@ const Settings = (props) => {
                                 ]}
                             />
                         </PanelRow>
-
 
                         <PanelRow>
                             <label>column Gap</label>

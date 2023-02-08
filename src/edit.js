@@ -6,12 +6,12 @@ import Settings from './Settings';
 import { getBoxValue } from './utils/functions';
 
 
- function Edit(props) {
+function Edit(props) {
 	const { attributes, setAttributes } = props;
-	 const { columns, cards, contentPadding, btnPadding, } = attributes;
+	const { titleTypo, descTypo, columns, cards, contentPadding, btnPadding, } = attributes;
 
 
-	  const updateCard = (index, which, value) => {
+	const updateCard = (index, which, value) => {
 		const newCards = [...cards];
 		newCards[index][which] = value;
 		setAttributes({ cards: newCards });
@@ -28,6 +28,18 @@ import { getBoxValue } from './utils/functions';
 						column-gap:${attributes.columnGap};
 						row-gap:${attributes.rowGap};
 					}
+					.cards .card-body{
+						padding: ${getBoxValue(contentPadding)};
+					}
+					.cards .btn-wraper a{
+						padding: ${getBoxValue(btnPadding)};
+					}
+			    	.cards .card h1{
+						font-size:${titleTypo.fontSize};
+				    } 
+					.cards .card p.desc {
+						font-size:${descTypo.fontSize};
+				    } 
 				`}
 			</style>
 
@@ -36,20 +48,14 @@ import { getBoxValue } from './utils/functions';
 					<div className={`card card-${index}`}>
 
 						<style>
-							{`.cards .card-${index} h1 {
+							{`.cards .card-${index} h1{
 								color:${card.titleColor}; 
+							
 				           	} 
 							.cards .card-${index} .desc{
                                 color:${card.descColor}
 							}
 
-							.cards .card-body{
-								padding: ${getBoxValue(contentPadding)};
-							}
-
-							.cards .btn-wraper a{
-								padding: ${getBoxValue(btnPadding)};
-							}
 							`}
 						</style>
 						<img className="img" src={card.image} alt="Denim Jeans" />
