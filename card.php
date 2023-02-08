@@ -25,8 +25,6 @@
 function nf_getBoxValue($object) {
     return implode(" ", array_values($object));
 }
- 
-
                 function create_block_card_block_init() {
 
                     wp_register_style(

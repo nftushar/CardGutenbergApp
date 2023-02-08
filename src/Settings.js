@@ -9,6 +9,8 @@ import {
 
 import BDevice from '../../Components/BDevice';
 import Title from '../../Components/Title';
+import Shadow from '../../Components/ShadowControl';
+
 
 const Settings = (props) => {
     const { attributes, setAttributes, updateCard } = props;
