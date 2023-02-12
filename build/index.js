@@ -770,20 +770,20 @@ const Settings = props => {
       cards: newCards
     });
   };
-  function setTitleTypo(newTitleTypo) {
+  function setTitleTypo(newFontSize) {
     setAttributes({
       titleTypo: {
         ...titleTypo,
-        fontSize: newTitleTypo
+        fontSize: newFontSize
       }
     });
   }
   ;
-  function setDescTypo(newDescTypo) {
+  function setDescTypo(newFontSize) {
     setAttributes({
       descTypo: {
         ...descTypo,
-        fontSize: newDescTypo
+        fontSize: newFontSize
       }
     });
   }
@@ -846,8 +846,10 @@ const Settings = props => {
       ,
       onChange: content => updateCard(index, 'btnLabel', content)
     })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelRow, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUploadCheck, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUpload, {
-      onSelect: media => {
-        handleImage(media.url, index);
+      onSelect: content => {
+        // console.log(content.url);
+        // handleImage(media.url, index)
+        updateCard(index, 'image', content.url);
       },
       allowedTypes: ['image'],
       value: card.image,
@@ -986,9 +988,9 @@ function Edit(props) {
     contentPadding,
     btnPadding
   } = attributes;
-  const updateCard = (index, which, value) => {
+  const updateCard = (index, property, value) => {
     const newCards = [...cards];
-    newCards[index][which] = value;
+    newCards[index][property] = value;
     setAttributes({
       cards: newCards
     });
@@ -998,7 +1000,7 @@ function Edit(props) {
     setAttributes: setAttributes,
     updateCard: updateCard
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("style", null, `
-                    .cards {
+					.cards {
 						column-gap:${attributes.columnGap};
 						row-gap:${attributes.rowGap};
 					}
@@ -1008,25 +1010,25 @@ function Edit(props) {
 					.cards .btn-wraper a{
 						padding: ${(0,_utils_functions__WEBPACK_IMPORTED_MODULE_6__.getBoxValue)(btnPadding)};
 					}
-			    	.cards .card h1{
+					.cards .card h1{
 						font-size:${titleTypo.fontSize};
-				    } 
+					} 
 					.cards .card p.desc {
 						font-size:${descTypo.fontSize};
-				    } 
+					} 
 				`), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: `cards columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`
   }, cards.map((card, index) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: `card card-${index}`
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("style", null, `.cards .card-${index} h1{
-								color:${card.titleColor}; 
-							
-				           	} 
-							.cards .card-${index} .desc{
-                                color:${card.descColor}
-							}
+							color:${card.titleColor}; 
+						
+						} 
+						.cards .card-${index} .desc{
+							color:${card.descColor}
+						}
 
-							`), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("img", {
+						`), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("img", {
     className: "img",
     src: card.image,
     alt: "Denim Jeans"
@@ -1304,7 +1306,7 @@ function _extends() {
   \************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"tcb/cards","version":"0.1.0","title":"Cards","description":"Example block scaffolded with Create Block tool.","category":"widgets","icon":"smiley","keywords":["alert","message"],"supports":{"html":false},"attributes":{"cards":{"type":"array","default":[{"background":{"color":"#ffff"},"image":"https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large","title":"This is my titleZ","titleColor":"#000","desc":"This is my description","descColor":"#f00","btnLabel":"Button","btnUrl":"https://www.google.com/","btnColors":{"color":"#f0f0f"}}]},"columns":{"type":"object","default":{"desktop":3,"tablet":2,"mobile":1}},"columnGap":{"type":"string","default":"20px"},"rowGap":{"type":"string","default":"30px"},"theme":{"type":"string","default":"themeOne"},"contentPadding":{"type":"object","default":{"top":"20px","right":"20px","bottom":"20px","left":"20px"}},"border":{"type":"object","default":{"color":"#72aee6","style":"solid","width":"0px"}},"shadows":{"type":"array","default":[]},"titleTypo":{"type":"object","default":{"fontSize":"10px"}},"descTypo":{"type":"object","default":{"fontSize":"5px"}},"buttonTypo":{"type":"object","default":{"fontSize":"5px"}},"btnPadding":{"type":"object","default":{"top":"10px","right":"25px","bottom":"10px","left":"25px"}}},"example":{"attributes":{"preview":true,"columns":{"desktop":1,"tablet":1,"mobile":1}}},"textdomain":"card","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"tcb/cards","version":"0.1.0","title":"Cards","description":"Example block scaffolded with Create Block tool.","category":"widgets","icon":"smiley","keywords":["alert","message"],"supports":{"html":false},"attributes":{"cards":{"type":"array","default":[{"background":{"color":"#ffff"},"image":"https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large","title":"This is my titleZ","titleColor":"#000","desc":"This is my description","descColor":"#f00","btnLabel":"Button","btnUrl":"https://www.google.com/","btnColors":{"color":"#f0f0f"}}]},"columns":{"type":"object","default":{"desktop":3,"tablet":2,"mobile":1}},"columnGap":{"type":"string","default":"20px"},"rowGap":{"type":"string","default":"30px"},"theme":{"type":"string","default":"themeOne"},"contentPadding":{"type":"object","default":{"top":"20px","right":"20px","bottom":"20px","left":"20px"}},"border":{"type":"object","default":{"color":"#72aee6","style":"solid","width":"0px"}},"shadows":{"type":"array","default":[]},"titleTypo":{"type":"object","default":{"fontSize":"20px"}},"descTypo":{"type":"object","default":{"fontSize":"12px"}},"buttonTypo":{"type":"object","default":{"fontSize":"5px"}},"btnPadding":{"type":"object","default":{"top":"10px","right":"25px","bottom":"10px","left":"25px"}}},"example":{"attributes":{"preview":true,"columns":{"desktop":1,"tablet":1,"mobile":1}}},"textdomain":"card","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
 
 /***/ })
 

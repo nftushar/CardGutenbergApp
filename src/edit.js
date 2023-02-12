@@ -11,9 +11,9 @@ function Edit(props) {
 	const { titleTypo, descTypo, columns, cards, contentPadding, btnPadding, } = attributes;
 
 
-	const updateCard = (index, which, value) => {
+	const updateCard = (index, property, value) => {
 		const newCards = [...cards];
-		newCards[index][which] = value;
+		newCards[index][property] = value;
 		setAttributes({ cards: newCards });
 	}
 
@@ -21,10 +21,9 @@ function Edit(props) {
 		<div {...useBlockProps()}>
 			<Settings attributes={attributes} setAttributes={setAttributes} updateCard={updateCard} />
 
-
 			<style>
 				{`
-                    .cards {
+					.cards {
 						column-gap:${attributes.columnGap};
 						row-gap:${attributes.rowGap};
 					}
@@ -34,12 +33,12 @@ function Edit(props) {
 					.cards .btn-wraper a{
 						padding: ${getBoxValue(btnPadding)};
 					}
-			    	.cards .card h1{
+					.cards .card h1{
 						font-size:${titleTypo.fontSize};
-				    } 
+					} 
 					.cards .card p.desc {
 						font-size:${descTypo.fontSize};
-				    } 
+					} 
 				`}
 			</style>
 
@@ -49,19 +48,18 @@ function Edit(props) {
 
 						<style>
 							{`.cards .card-${index} h1{
-								color:${card.titleColor}; 
-							
-				           	} 
-							.cards .card-${index} .desc{
-                                color:${card.descColor}
-							}
+							color:${card.titleColor}; 
+						
+						} 
+						.cards .card-${index} .desc{
+							color:${card.descColor}
+						}
 
-							`}
+						`}
 						</style>
 						<img className="img" src={card.image} alt="Denim Jeans" />
 
 						<div className="card-body">
-
 							<RichText
 								{...blockProps}
 								tagName="h1"

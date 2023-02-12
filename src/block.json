@@ -76,13 +76,13 @@
 		"titleTypo": {
 			"type": "object",
 			"default": {
-				"fontSize": "10px"
+				"fontSize": "20px"
 			}
 		},
 		"descTypo": {
 			"type": "object",
 			"default": {
-				"fontSize": "5px"
+				"fontSize": "12px"
 			}
 		},
 		"buttonTypo": {

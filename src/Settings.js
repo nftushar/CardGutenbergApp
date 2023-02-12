@@ -72,11 +72,11 @@ const Settings = (props) => {
 
 
 
-    function setTitleTypo(newTitleTypo) {
-        setAttributes({ titleTypo: { ...titleTypo, fontSize: newTitleTypo } });
+    function setTitleTypo(newFontSize) {
+        setAttributes({ titleTypo: { ...titleTypo, fontSize: newFontSize } });
     };
-    function setDescTypo(newDescTypo) {
-        setAttributes({ descTypo: { ...descTypo, fontSize: newDescTypo } });
+    function setDescTypo(newFontSize) {
+        setAttributes({ descTypo: { ...descTypo, fontSize: newFontSize } });
     };
 
     function setColumngap(newColumngap) {
@@ -112,8 +112,8 @@ const Settings = (props) => {
                     title: 'style',
                     className: 'style',
                 },
-            ]}
-        >
+            ]} >
+
             {(tab) => <div>
                 {/* //////////////////////////////// PanelBody Two  //////////////////////////////// */}
                 <PanelBody title='This is card two' >
@@ -150,9 +150,11 @@ const Settings = (props) => {
                                     <PanelRow>
                                         <MediaUploadCheck>
                                             <MediaUpload
-                                                onSelect={(media) => {
+                                                onSelect={(content) => {
 
-                                                    handleImage(media.url, index)
+                                                    // console.log(content.url);
+                                                    // handleImage(media.url, index)
+                                                  updateCard(index, 'image', content.url)
                                                 }
                                                 }
 
@@ -198,7 +200,6 @@ const Settings = (props) => {
                             </>
                         )
                     })}
-
                 </PanelBody>
 
                 {tab.name === "options" && <div>
@@ -207,6 +208,7 @@ const Settings = (props) => {
                             <Title className='mb5'>{__('Columns:', 'card')}</Title>
                             <BDevice device={device} onChange={val => setDevice(val)} />
                         </PanelRow>
+
                         <RangeControl value={columns[device]} onChange={val => setAttributes({ columns: { ...columns, [device]: val } })} min={1} max={6} step={1} beforeIcon='grid-view' />
 
                         <PanelRow>
